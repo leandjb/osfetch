@@ -78,9 +78,9 @@ Tested via CI matrix `{ubuntu-latest, macos-latest, windows-latest} × {node 18,
 
 Workflows separados en `.github/workflows/`:
 
-- **`ci.yml`** — CI de tests. Se dispara en `push` a `main`, `pull_request` hacia `main` y `workflow_dispatch` (manual), incluyendo merges a `main` (push). Corre matrix 3 OS × 3 Node (18, 20, 22), steps `actions/checkout@v4`, `actions/setup-node@v4` con `cache: npm`, `npm ci`, `npm test`.
+- **`ci.yml`** — CI de tests. Se dispara en `push` a `main`, `pull_request` hacia `main` y `workflow_dispatch` (manual), incluyendo merges a `main` (push). Corre matrix 3 OS × 3 Node (18, 20, 22), steps `actions/checkout@v4`, `pnpm/action-setup@v4` (version 9), `actions/setup-node@v5` con `cache: 'pnpm'` y `cache-dependency-path: pnpm-lock.yaml`, `pnpm install --frozen-lockfile`, `pnpm test` (o `npm test`).
 
-- **`publish.yml`** — Publish a npm. Se dispara **solo** en `release: types: [published]` y `workflow_dispatch`. Corre en `ubuntu-latest` con `node 22`, `registry-url: https://registry.npmjs.org`, `permissions: {contents: read, id-token: write}`, gate `npm ci && npm test` y `npm publish --provenance --access public` con `NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}` (secreto `NPM_TOKEN` classic `automation` en `Settings > Secrets`).
+- **`publish.yml`** — Publish a npm. Se dispara **solo** en `release: types: [published]` y `workflow_dispatch`. Corre en `ubuntu-latest` con `node 22`, `pnpm/action-setup@v4`, `actions/setup-node@v5` con `cache: 'pnpm'` y `registry-url: https://registry.npmjs.org`, `permissions: {contents: read, id-token: write}`, gate `pnpm install --frozen-lockfile` y `pnpm test` y `npm publish --provenance --access public` con `NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}` (secreto `NPM_TOKEN` classic `automation` en `Settings > Secrets`, usa `pnpm-lock.yaml` como fuente de verdad).
 
 CI nunca publica; publish nunca corre en `push`/`PR`. Ver `.github/workflows/ci.yml` y `.github/workflows/publish.yml`.
 
