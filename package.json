@@ -1,5 +1,36 @@
 {
-	"dependencies": {
-		"@fission-ai/openspec": "^1.10.0"
-	}
+  "name": "osfetch",
+  "version": "1.0.0",
+  "description": "Pure Node.js system fetch — neofetch-style report with zero runtime dependencies",
+  "type": "module",
+  "bin": {
+    "osfetch": "./bin/osfetch.js"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+  },
+  "devDependencies": {
+    "jest": "29.7.0",
+    "@fission-ai/openspec": "1.10.0"
+  },
+  "keywords": [
+    "fetch",
+    "neofetch",
+    "system",
+    "sysinfo",
+    "cli"
+  ]
 }

@@ -1,0 +1,90 @@
+[
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "speed": 3800,
+    "times": {
+      "user": 100000,
+      "nice": 0,
+      "sys": 50000,
+      "idle": 1000000,
+      "irq": 0
+    }
+  }
+]

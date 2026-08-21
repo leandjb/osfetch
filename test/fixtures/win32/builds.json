@@ -1,0 +1,5 @@
+[
+  { "release": "10.0.19045", "build": 19045, "expected": "Windows 10" },
+  { "release": "10.0.22000", "build": 22000, "expected": "Windows 11" },
+  { "release": "10.0.22631", "build": 22631, "expected": "Windows 11" }
+]

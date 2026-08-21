@@ -1,0 +1,42 @@
+export const linux = {
+  name: 'linux',
+  lines: [
+    '       .--.        ',
+    '      |o_o |       ',
+    '      |:_/ |       ',
+    '     //   \\ \\      ',
+    '    (|     | )     ',
+    "   /'\\_   _/`\\     ",
+    '   \\___)=(___/     ',
+    '    `-----`        ',
+    '   Linux Tux       ',
+    '  .-----------.    ',
+    '  |  .-----.  |    ',
+    '  |  |     |  |    ',
+    '  |  |     |  |    ',
+    '  |  `-----`  |    ',
+    '  `-----------`    ',
+    '                   ',
+  ],
+  colors: [
+    'white',
+    'white',
+    'white',
+    'yellow',
+    'yellow',
+    'white',
+    'white',
+    'white',
+    'cyan',
+    'cyan',
+    'cyan',
+    'cyan',
+    'cyan',
+    'cyan',
+    'cyan',
+    'white',
+  ],
+};
+
+// also default export for convenience
+export default linux;

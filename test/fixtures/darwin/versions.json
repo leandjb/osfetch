@@ -1,0 +1,7 @@
+[
+  { "darwin": "23.0.0", "macos": "Sonoma", "version": "14.0" },
+  { "darwin": "22.5.0", "macos": "Ventura", "version": "13.4" },
+  { "darwin": "21.6.0", "macos": "Monterey", "version": "12.5" },
+  { "darwin": "20.6.0", "macos": "Big Sur", "version": "11.6" },
+  { "darwin": "19.6.0", "macos": "Catalina", "version": "10.15.7" }
+]
