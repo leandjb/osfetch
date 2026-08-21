@@ -2,6 +2,8 @@
 
 Pure Node.js system fetch — neofetch-style report with **zero runtime dependencies**.
 
+Repository: https://github.com/leandjb/osfetch
+
 ```
        .--.          leandb@myhost
       |o_o |         -------------

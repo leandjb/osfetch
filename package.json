@@ -1,6 +1,6 @@
 {
   "name": "@leandjb/osfetch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pure Node.js system fetch — neofetch-style report with zero runtime dependencies",
   "type": "module",
   "bin": {
@@ -8,6 +8,14 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandjb/osfetch.git"
+  },
+  "homepage": "https://github.com/leandjb/osfetch#readme",
+  "bugs": {
+    "url": "https://github.com/leandjb/osfetch/issues"
   },
   "exports": {
     ".": "./src/index.js"
