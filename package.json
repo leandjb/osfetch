@@ -1,10 +1,13 @@
 {
-  "name": "osfetch",
-  "version": "1.0.0",
+  "name": "@leandjb/osfetch",
+  "version": "1.0.1",
   "description": "Pure Node.js system fetch — neofetch-style report with zero runtime dependencies",
   "type": "module",
   "bin": {
-    "osfetch": "./bin/osfetch.js"
+    "osfetch": "bin/osfetch.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "exports": {
     ".": "./src/index.js"

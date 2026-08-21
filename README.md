@@ -19,10 +19,14 @@ Pure Node.js system fetch — neofetch-style report with **zero runtime dependen
 Requires **Node.js >= 18**.
 
 ```bash
-npm install -g osfetch
+npm install -g @leandjb/osfetch
 # or
-npx osfetch
+npx @leandjb/osfetch
+# tras instalar, el bin sigue siendo `osfetch`:
+# osfetch --help
 ```
+
+> **BREAKING** desde `v1.0.0`: el paquete se publica como scoped `@leandjb/osfetch` (antes `osfetch` bloqueado por npm `E403 Package name too similar`). Migración: `npm install -g osfetch` → `npm install -g @leandjb/osfetch` o `npx @leandjb/osfetch`. El bin `osfetch` no cambia.
 
 Local dev:
 
