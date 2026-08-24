@@ -90,6 +90,29 @@ Workflows separados en `.github/workflows/`:
 
 CI nunca publica; publish nunca corre en `push`/`PR`. Ver `.github/workflows/ci.yml` y `.github/workflows/publish.yml`.
 
+## Release Process
+
+El workflow de publish hace `checkout` del **commit etiquetado**, no de `main`. Si la Release se crea sobre un tag cuyo commit no tiene los metadatos de publicación correctos, npm falla con:
+
+```
+E422 Unprocessable Entity - Error verifying sigstore provenance bundle:
+package.json: "repository.url" is "", expected to match "https://github.com/leandjb/osfetch" from provenance
+```
+
+Para evitarlo, crea **siempre** las releases siguiendo este orden:
+
+1. Bump de versión en `package.json` y commit en `main` (la CI debe estar en verde).
+2. Push a `main`.
+3. Crear el tag **sobre ese commit** (`git tag <version> && git push origin <version>`).
+4. Crear la Release de GitHub para ese tag.
+
+Guardas automatizadas:
+
+- `test/unit/publish-metadata.test.js` valida en cada CI que `repository.url` (normalizada), nombre scoped, `homepage`, `bugs`, versión SemVer y `bin` sean correctos.
+- El paso `Verify provenance metadata` en `publish.yml` hace fail-fast antes de `npm publish --provenance` si `repository.url` no coincide con `https://github.com/leandjb/osfetch`.
+
+Si una Release ya se creó sobre un tag antiguo: NO reetiquetes; bumpa la versión, sigue el proceso de arriba y crea una Release nueva sobre el commit actualizado.
+
 ## Memory Semantics Caveat
 
 - **Linux**: `Memory` is `MemTotal - MemAvailable` from `/proc/meminfo`, which is cache-aware and matches `free`/`htop`.
