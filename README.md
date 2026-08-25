@@ -1,8 +1,6 @@
 # osfetch
 
-Pure Node.js system fetch — neofetch-style report with **zero runtime dependencies**.
-
-Repository: https://github.com/leandjb/osfetch
+Pure Node.js system fetch — a neofetch-style system report with **zero runtime dependencies**. Works on Linux, macOS and Windows (Node.js >= 18).
 
 ```
        .--.          leandb@myhost
@@ -18,131 +16,56 @@ Repository: https://github.com/leandjb/osfetch
 
 ## Install
 
-Requires **Node.js >= 18**.
-
 ```bash
 npm install -g @leandjb/osfetch
-# or
-npx @leandjb/osfetch
-# tras instalar, el bin sigue siendo `osfetch`:
-# osfetch --help
+pnpm add -g @leandjb/osfetch
 ```
 
-> **BREAKING** desde `v1.0.0`: el paquete se publica como scoped `@leandjb/osfetch` (antes `osfetch` bloqueado por npm `E403 Package name too similar`). Migración: `npm install -g osfetch` → `npm install -g @leandjb/osfetch` o `npx @leandjb/osfetch`. El bin `osfetch` no cambia.
-
-Local dev:
+Or run it without installing:
 
 ```bash
-pnpm install
-npm test
-node bin/osfetch.js
+npx @leandjb/osfetch
+pnpm exec @leandjb/osfetch
 ```
 
 ## Usage
 
 ```bash
-osfetch
-osfetch --json
-osfetch --no-color
-osfetch --no-logo
-osfetch --help
-osfetch --version
+osfetch              # full report with logo and colors
+osfetch --json       # machine-readable JSON output
+osfetch --no-color   # disable ANSI colors (also honors NO_COLOR)
+osfetch --no-logo    # render info lines only
+osfetch --help       # show usage
+osfetch --version    # show version
 ```
 
-### Flags
+### Platform support
 
-| Flag | Description |
-|------|-------------|
-| `--json` | Machine-readable JSON (keys: `os`, `kernel`, `uptime`, `shell`, `cpu`, `memory`; absent keys for failed probes, no logo/colors) |
-| `--no-color` | Strip all ANSI sequences (also honors `NO_COLOR` env) |
-| `--no-logo` | Render info lines without logo column (starts at column 0) |
-| `--help` | Show usage and flag list, exit 0 |
-| `--version` | Show version from `package.json`, exit 0 |
+| Platform | Notes |
+|----------|-------|
+| **Linux** | All distros; reads `/etc/os-release` and `/proc/meminfo`. No subprocesses needed. |
+| **macOS** | Detects the macOS marketing name (Sonoma, Ventura, ...). |
+| **Windows** | Windows 10/11 detection; PowerShell/cmd shell detection. Bash is not required. |
 
-Unknown flags print an error to `stderr`, show usage, and exit non-zero:
+Unknown flags print an error to `stderr` and exit non-zero.
+
+## Running tests
+
+Requires Node.js >= 18. With [pnpm](https://pnpm.io):
 
 ```bash
-$ osfetch --frobnicate
-Error: unknown flag --frobnicate
-# usage printed...
-exit 1
+pnpm install
+pnpm test
 ```
 
-## Platform Support
-
-| Platform | OS | Kernel | Uptime | Shell | CPU | Memory |
-|----------|----|--------|--------|-------|-----|--------|
-| `linux` (all distros) | `/etc/os-release` `PRETTY_NAME` | `os.release()` | `os.uptime()` | `$SHELL` basename | `os.cpus()` | `/proc/meminfo` `MemAvailable` → `totalmem/freemem` fallback |
-| `darwin` (macOS) | Darwin → macOS marketing name table (Sonoma/Ventura/…) | `os.release()` | `os.uptime()` | `$SHELL` | `os.cpus()` | `os.totalmem()/freemem()` |
-| `win32` (Windows 10/11) | build ≥ 22000 → Windows 11 else Windows 10 | `os.release()`/`os.version()` | `os.uptime()` | `PSModulePath` → pwsh/PowerShell, `PROMPT` → cmd, optional CIM probe | `os.cpus()` | `os.totalmem()/freemem()` |
-
-No `child_process` on Linux/macOS. On Windows, bash/PowerShell are **not required**; any optional subprocess probe is failure-tolerant and skipped silently.
-
-Tested via CI matrix `{ubuntu-latest, macos-latest, windows-latest} × {node 18, 20, 22}` en `.github/workflows/ci.yml`.
-
-## GitHub Workflows
-
-Workflows separados en `.github/workflows/`:
-
-- **`ci.yml`** — CI de tests. Se dispara en `push` a `main`, `pull_request` hacia `main` y `workflow_dispatch` (manual), incluyendo merges a `main` (push). Corre matrix 3 OS × 3 Node (18, 20, 22), steps `actions/checkout@v4`, `pnpm/action-setup@v4` (version 9), `actions/setup-node@v5` con `cache: 'pnpm'` y `cache-dependency-path: pnpm-lock.yaml`, `pnpm install --frozen-lockfile`, `pnpm test` (o `npm test`).
-
-- **`publish.yml`** — Publish a npm. Se dispara **solo** en `release: types: [published]` y `workflow_dispatch`. Corre en `ubuntu-latest` con `node 22`, `pnpm/action-setup@v4`, `actions/setup-node@v5` con `cache: 'pnpm'` y `registry-url: https://registry.npmjs.org`, `permissions: {contents: read, id-token: write}`, gate `pnpm install --frozen-lockfile` y `pnpm test` y `npm publish --provenance --access public` con `NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}` (secreto `NPM_TOKEN` classic `automation` en `Settings > Secrets`, usa `pnpm-lock.yaml` como fuente de verdad).
-
-CI nunca publica; publish nunca corre en `push`/`PR`. Ver `.github/workflows/ci.yml` y `.github/workflows/publish.yml`.
-
-## Release Process
-
-El workflow de publish hace `checkout` del **commit etiquetado**, no de `main`. Si la Release se crea sobre un tag cuyo commit no tiene los metadatos de publicación correctos, npm falla con:
-
-```
-E422 Unprocessable Entity - Error verifying sigstore provenance bundle:
-package.json: "repository.url" is "", expected to match "https://github.com/leandjb/osfetch" from provenance
-```
-
-Para evitarlo, crea **siempre** las releases siguiendo este orden:
-
-1. Bump de versión en `package.json` y commit en `main` (la CI debe estar en verde).
-2. Push a `main`.
-3. Crear el tag **sobre ese commit** (`git tag <version> && git push origin <version>`).
-4. Crear la Release de GitHub para ese tag.
-
-Guardas automatizadas:
-
-- `test/unit/publish-metadata.test.js` valida en cada CI que `repository.url` (normalizada), nombre scoped, `homepage`, `bugs`, versión SemVer y `bin` sean correctos.
-- El paso `Verify provenance metadata` en `publish.yml` hace fail-fast antes de `npm publish --provenance` si `repository.url` no coincide con `https://github.com/leandjb/osfetch`.
-
-Si una Release ya se creó sobre un tag antiguo: NO reetiquetes; bumpa la versión, sigue el proceso de arriba y crea una Release nueva sobre el commit actualizado.
-
-## Memory Semantics Caveat
-
-- **Linux**: `Memory` is `MemTotal - MemAvailable` from `/proc/meminfo`, which is cache-aware and matches `free`/`htop`.
-- **macOS / Windows**: Node's `os.totalmem()` / `os.freemem()` is used. This overstates memory pressure compared to cache-aware tools (e.g., `vm_stat`, Task Manager) because it counts disk cache as used. Accepted for v1 minimal scope; future versions may add platform-specific cache-aware probes.
-
-Documented as a known trade-off in `openspec/changes/add-osfetch-cli/design.md`.
-
-## Architecture
-
-```
-bin/osfetch.js -> src/cli.js -> src/index.js -> src/core/assembler.js -> src/modules/*.js
-                     |                |
-                     |                v -> src/platforms/*.js (only impure layer)
-                     v
-               src/core/renderer.js -> src/core/ansi.js, src/logos/*.js (pure)
-```
-
-- **Pure layer**: `modules/*`, `renderer`, `ansi`, `logos` are pure functions over an injected backend.
-- **Impure layer**: `platforms/*` only files that import `os`/`fs`/`child_process`.
-- Adding a new info line = one file in `src/modules/`, one entry in registry, one test.
-
-## Packaging
-
-Published files whitelist is `["bin","src"]` (plus `package.json`, `README.md`, `LICENSE`). Tests, fixtures, CI, and OpenSpec never ship:
+Or with npm:
 
 ```bash
-npm pack --dry-run
+npm install
+npm test
 ```
 
-Verify tarball contains only `bin/`, `src/`, `package.json`, `README.md`, `LICENSE`.
+Tests run on Linux, macOS and Windows across Node 18, 20 and 22 in CI.
 
 ## License
 
