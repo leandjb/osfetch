@@ -9,14 +9,7 @@ exports[`renderer handles object info shape 1`] = `
    /'\\_   _/\`\\       Shell: zsh
    \\___)=(___/       CPU: AMD Ryzen
     \`-----\`          Memory: 4000 / 8000 MB
-   Linux Tux       
-  .-----------.    
-  |  .-----.  |    
-  |  |     |  |    
-  |  |     |  |    
-  |  \`-----\`  |    
-  \`-----------\`    
-                   "
+   Linux Tux       "
 `;
 
 exports[`renderer renders with --no-color has zero ANSI 1`] = `
@@ -28,14 +21,7 @@ exports[`renderer renders with --no-color has zero ANSI 1`] = `
    /'\\_   _/\`\\       Shell: bash
    \\___)=(___/       CPU: Intel(R) Core(TM) i7-10700K (8)
     \`-----\`          Memory: 8192 MB / 16384 MB
-   Linux Tux       
-  .-----------.    
-  |  .-----.  |    
-  |  |     |  |    
-  |  |     |  |    
-  |  \`-----\`  |    
-  \`-----------\`    
-                   "
+   Linux Tux       "
 `;
 
 exports[`renderer renders with --no-logo starts at column 0 1`] = `
@@ -59,14 +45,7 @@ exports[`renderer renders with linux logo and color 1`] = `
 [37m   /'\\_   _/\`\\     [0m  [32mShell:[0m bash
 [37m   \\___)=(___/     [0m  [32mCPU:[0m Intel(R) Core(TM) i7-10700K (8)
 [37m    \`-----\`        [0m  [32mMemory:[0m 8192 MB / 16384 MB
-[36m   Linux Tux       [0m  [40m   [0m[41m   [0m[42m   [0m[43m   [0m[44m   [0m[45m   [0m[46m   [0m[47m   [0m
-[36m  .-----------.    [0m
-[36m  |  .-----.  |    [0m
-[36m  |  |     |  |    [0m
-[36m  |  |     |  |    [0m
-[36m  |  \`-----\`  |    [0m
-[36m  \`-----------\`    [0m
-[37m                   [0m"
+[36m   Linux Tux       [0m  [40m   [0m[41m   [0m[42m   [0m[43m   [0m[44m   [0m[45m   [0m[46m   [0m[47m   [0m"
 `;
 
 exports[`renderer renders with macos logo and color 1`] = `
@@ -82,10 +61,7 @@ exports[`renderer renders with macos logo and color 1`] = `
 [34m    \\  \\/  /       [0m
 [36m     \\    /        [0m
 [36m      \`--\`         [0m
-[37m   macOS Apple     [0m
-[37m  .-----------.    [0m
-[37m  |  .-----.  |    [0m
-[37m  \`-----------\`    [0m"
+[37m   macOS Apple     [0m"
 `;
 
 exports[`renderer renders with noColor and noLogo combined 1`] = `
@@ -100,20 +76,13 @@ Memory: 8192 MB / 16384 MB"
 `;
 
 exports[`renderer renders with windows logo and color 1`] = `
-"[34m  ____________      [0m  [36mleandb@myhost[0m
-[34m |            |     [0m  [36m-------------[0m
-[31m |   .----.   |     [0m  [32mOS:[0m Ubuntu 22.04.3 LTS
-[31m |   |    |   |     [0m  [32mKernel:[0m 6.5.0-21-generic
-[31m |   |    |   |     [0m  [32mUptime:[0m 2 days, 3 hours
-[31m |   \`----\`   |     [0m  [32mShell:[0m bash
-[37m |------------|     [0m  [32mCPU:[0m Intel(R) Core(TM) i7-10700K (8)
-[32m |   .----.   |     [0m  [32mMemory:[0m 8192 MB / 16384 MB
-[32m |   |    |   |     [0m  [40m   [0m[41m   [0m[42m   [0m[43m   [0m[44m   [0m[45m   [0m[46m   [0m[47m   [0m
-[32m |   |    |   |     [0m
-[32m |   \`----\`   |     [0m
-[33m |____________|     [0m
-[37m                    [0m
-[36m   Windows Pane     [0m
-[37m  .-----------.     [0m
-[37m  \`-----------\`     [0m"
+"[34m  _____________      [0m  [36mleandb@myhost[0m
+[34m |      |      |     [0m  [36m-------------[0m
+[34m |      |      |     [0m  [32mOS:[0m Ubuntu 22.04.3 LTS
+[31m |------|------|     [0m  [32mKernel:[0m 6.5.0-21-generic
+[32m |      |      |     [0m  [32mUptime:[0m 2 days, 3 hours
+[32m |      |      |     [0m  [32mShell:[0m bash
+[37m  -------------      [0m  [32mCPU:[0m Intel(R) Core(TM) i7-10700K (8)
+[36m   Windows OS        [0m  [32mMemory:[0m 8192 MB / 16384 MB
+                       [40m   [0m[41m   [0m[42m   [0m[43m   [0m[44m   [0m[45m   [0m[46m   [0m[47m   [0m"
 `;

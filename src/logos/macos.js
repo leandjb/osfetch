@@ -29,9 +29,6 @@ export const macos = {
     'cyan',
     'cyan',
     'white',
-    'white',
-    'white',
-    'white',
   ],
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@leandjb/osfetch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Pure Node.js system fetch — neofetch-style report with zero runtime dependencies",
   "type": "module",
   "bin": {

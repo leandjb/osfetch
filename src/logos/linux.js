@@ -3,7 +3,7 @@ export const linux = {
   lines: [
     '       .--.        ',
     '      |o_o |       ',
-    '      |:/  |       ',
+    '      |:_/ |       ',
     '     //   \\ \\      ',
     '    (|     | )     ',
     "   /'\\_   _/`\\     ",
@@ -21,13 +21,6 @@ export const linux = {
     'white',
     'white',
     'cyan',
-    'cyan',
-    'cyan',
-    'cyan',
-    'cyan',
-    'cyan',
-    'cyan',
-    'white',
   ],
 };
 

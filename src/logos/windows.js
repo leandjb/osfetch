@@ -13,20 +13,12 @@ export const windows = {
   colors: [
     'blue',
     'blue',
+    'blue',
     'red',
-    'red',
-    'red',
-    'red',
-    'white',
     'green',
     'green',
-    'green',
-    'green',
-    'yellow',
     'white',
     'cyan',
-    'white',
-    'white',
   ],
 };
 

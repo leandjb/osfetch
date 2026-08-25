@@ -84,7 +84,12 @@ describe('renderer', () => {
   });
 
   test('side-by-side layout gutter is 2 spaces and handles logo taller than info', () => {
-    const logo = getLogo('linux');
+    // Synthetic tall logo: keeps this layout test independent from real art height
+    const logo = {
+      name: 'tall',
+      lines: Array.from({ length: 12 }, (_, i) => `row${i}`.padEnd(20)),
+      colors: Array.from({ length: 12 }, () => 'white'),
+    };
     const shortInfo = [{ label: 'OS', value: 'Test' }];
     const out = render(shortInfo, logo, { username: 'u', hostname: 'h', noColor: true });
     const lines = out.split('\n');

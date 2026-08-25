@@ -12,7 +12,7 @@ describe('logos', () => {
       expect(Array.isArray(logo.lines)).toBe(true);
       expect(Array.isArray(logo.colors)).toBe(true);
       expect(logo.lines.length).toBe(logo.colors.length);
-      expect(logo.lines.length).toBeGreaterThanOrEqual(12);
+      expect(logo.lines.length).toBeGreaterThanOrEqual(8);
       expect(logo.lines.length).toBeLessThanOrEqual(20);
     }
   });
